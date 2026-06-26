@@ -1,0 +1,25 @@
+### consulta de productos
+GET http://www.publicarlibros.com/productos
+
+### Modificar Productos
+PUT http://www.publicarlibros.com/productos/1
+
+{
+    "codBarras":"75010571001",
+    "descripcion":"Arroz Integral 3kg",
+    "stock":85,
+    "precio_unitario":15,
+    "creado_por":"2",
+    "fecha_registro":"2026-06-12"
+}
+
+### Adiccionar
+POST http://www.publicarlibros.com/productos
+
+{
+    "codBarras":"75010571001",
+    "descripcion":"Arroz Integral 3kg",
+    "stock":85,
+    "precio_unitario":15,
+    "fecha_registro":"2026-06-12"
+}
