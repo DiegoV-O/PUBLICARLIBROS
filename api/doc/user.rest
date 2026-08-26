@@ -1,2 +1,2 @@
 ### consulta de usuario
-GET http://wwww.puclicarlibros.com/users
+GET http://api.publicarlibros/users

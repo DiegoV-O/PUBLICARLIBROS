@@ -12,7 +12,7 @@ class Users
     ];
     public static function all()
     {
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM usuario";
         return ConexionPDO::query($sql); //self::$users;
     }
 }

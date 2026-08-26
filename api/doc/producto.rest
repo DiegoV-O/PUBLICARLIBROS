@@ -1,8 +1,8 @@
 ### consulta de productos
-GET http://www.publicarlibros.com/productos
+GET http://api.publicarlibros/productos
 
 ### Modificar Productos
-PUT http://www.publicarlibros.com/productos/1
+PUT http://api.publicarlibros/productos/1
 
 {
     "codBarras":"75010571001",
@@ -14,7 +14,7 @@ PUT http://www.publicarlibros.com/productos/1
 }
 
 ### Adiccionar
-POST http://www.publicarlibros.com/productos
+POST http://api.publicarlibros/productos
 
 {
     "codBarras":"75010571001",
@@ -23,3 +23,6 @@ POST http://www.publicarlibros.com/productos
     "precio_unitario":15,
     "fecha_registro":"2026-06-12"
 }
+
+### Eliminar producto
+DELETE http://api.publicarlibros/productos/23

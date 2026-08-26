@@ -79,6 +79,47 @@ class ProductoController{
         $jsonData=file_get_contents('php://input');
         $data = json_decode($jsonData, true);
         //validacion
+        if(json_last_error()!=JSON_ERROR_NONE)
+           {
+                 echo json_encode(
+                [
+                    "status"=>"Error",
+                    "message"=>json_last_error_msg(),
+                ]);
+                return;
+           }
+
+        $errores=[];
+
+        if(!isset($data['codBarras']) || trim($data['codBarras'])=="")
+            {
+                $errores[]="El campo de codigo de barras es obligatorio";
+            }
+
+        if(!isset($data['descripcion']) || trim($data['descripcion'])=="")
+            {
+                $errores[]="El campo de descripcion es obligatorio";
+            }
+
+        if(!isset($data['stock']) || trim($data['stock'])=="")
+            {
+                $errores[]="El campo de stock es obligatorio";
+            }
+
+        if(!isset($data['precio_unitario']) || trim($data['precio_unitario'])=="")
+            {
+                $errores[]="El campo de precio_unitario es obligatorio";
+            }
+
+        if(count($errores)>0)
+            {
+                echo json_encode([
+                    "status"=>"Error",
+                    "errores"=>$errores,
+                ]);
+                return;
+            }
+
         $producto=Productos::add($data);
         if($producto) {
                 echo json_encode([
@@ -88,5 +129,21 @@ class ProductoController{
                 return;
             }
         echo json_encode($producto);     
+    }
+    //eliminar producto
+    public function delete($id)
+    {
+        $producto=Productos::delete($id);
+        if($producto) {
+                echo json_encode([
+                    "estado" => true,
+                    "message" => "Producto eliminado correctamente",
+                ]);
+                return;
+            }
+        echo json_encode([
+            "estado" => false,
+            "message" => "No se pudo eliminar el producto",
+        ]);
     }
 }
