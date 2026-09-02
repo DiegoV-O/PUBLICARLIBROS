@@ -4,3 +4,4 @@
 ## Registro de usuario
 - Registro de personal
 ## Resumen practico
+```git add .`→Prepara archivos.
