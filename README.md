@@ -5,3 +5,6 @@
 - Registro de personal
 ## Resumen practico
 `git add .` → prepara archivos.
+`git commit -m "mensaje" .` → guardar cambios en tu historial local.
+`git push .` → sube esos cambios a la nube.
+
