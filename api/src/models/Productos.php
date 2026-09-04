@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/../Config/conexionDB.php";
+require_once __DIR__ . '/../config/conexionDB.php';
 class Productos
 {   
     //mostrar producto

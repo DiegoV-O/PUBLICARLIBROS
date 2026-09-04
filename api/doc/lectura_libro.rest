@@ -1,2 +1,26 @@
-### consulta de productos
+### consulta de lecturas
 GET http://api.publicarlibros/lectura_libro
+
+### Obtener una lectura
+GET http://api.publicarlibros/lectura_libro/1
+
+### Adicionar lectura
+POST http://api.publicarlibros/lectura_libro
+Content-Type: application/json
+
+{
+  "cod_lector": 1,
+  "cod_libro": 1,
+  "fecha_inicio": "2026-09-04"
+}
+
+### Modificar lectura
+PUT http://api.publicarlibros/lectura_libro/1
+Content-Type: application/json
+
+{
+  "fecha_inicio": "2026-09-05"
+}
+
+### Eliminar lectura
+DELETE http://api.publicarlibros/lectura_libro/1

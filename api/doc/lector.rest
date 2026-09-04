@@ -1,2 +1,28 @@
-### consulta de productos
+### consulta de lectores
 GET http://api.publicarlibros/lector
+
+### Obtener un lector
+GET http://api.publicarlibros/lector/1
+
+### Adicionar lector
+POST http://api.publicarlibros/lector
+Content-Type: application/json
+
+{
+  "CI": "8000100",
+  "nombre": "Elena",
+  "apellidos": "Rios",
+  "email": "elena.rios@ejemplo.com",
+  "cod_usuario": null
+}
+
+### Modificar lector
+PUT http://api.publicarlibros/lector/1
+Content-Type: application/json
+
+{
+  "email": "elena.actualizada@ejemplo.com"
+}
+
+### Eliminar lector
+DELETE http://api.publicarlibros/lector/1

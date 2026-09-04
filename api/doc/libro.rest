@@ -1,2 +1,28 @@
-### consulta de productos
+### Consulta de libros
 GET http://api.publicarlibros/libro
+
+### Obtener un libro
+GET http://api.publicarlibros/libro/1
+
+### Adicionar libro
+POST http://api.publicarlibros/libro
+Content-Type: application/json
+
+{
+  "isbn": "9780000000002",
+  "titulo": "Libro de prueba",
+  "sinopsis": "Ejemplo CRUD",
+  "estado_publicacion": "Publicado",
+  "fecha_publicacion": "2026-09-04"
+}
+
+### Modificar libro
+PUT http://api.publicarlibros/libro/1
+Content-Type: application/json
+
+{
+  "titulo": "Libro actualizado"
+}
+
+### Eliminar libro
+DELETE http://api.publicarlibros/libro/1

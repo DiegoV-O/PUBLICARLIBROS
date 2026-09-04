@@ -8,11 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . "/../src/router.php";
 require_once __DIR__ . "/../src/controllers/UserController.php";
 require_once __DIR__ . "/../src/controllers/ProductoController.php";
-require_once __DIR__ . "/../src/controllers/autor.php";
-require_once __DIR__ . "/../src/controllers/autor_libro.php";
-require_once __DIR__ . "/../src/controllers/lector.php";
-require_once __DIR__ . "/../src/controllers/lectura_libro.php";
-require_once __DIR__ . "/../src/controllers/libro.php";
+require_once __DIR__ . "/../src/controllers/PublicacionCrud.php";
 
 use App\Router;
 $route=new Router();
@@ -27,11 +23,26 @@ $route->add('GET','/productos','ProductoController@getAll');
 $route->add('PUT','/productos/{id}','ProductoController@update');
 $route->add('POST','/productos','ProductoController@add');
 $route->add('DELETE','/productos/{id}','ProductoController@delete');
-$route->add('GET','/autor','autorController@getAll');
-$route->add('GET','/autor_libro','autor_libroController@getAll');
-$route->add('GET','/lector','lectorController@getAll');
-$route->add('GET','/lectura_libro','lectura_libroController@getAll');
-$route->add('GET','/libro','libroController@getAll');
+$addCrudRoutes = function ($path, $controller) use ($route) {
+    $route->add('GET', $path, $controller . '@getAll');
+    $route->add('GET', $path . '/{id}', $controller . '@getOne');
+    $route->add('POST', $path, $controller . '@add');
+    $route->add('PUT', $path . '/{id}', $controller . '@update');
+    $route->add('DELETE', $path . '/{id}', $controller . '@delete');
+//direccion de libros
+$route->add('GET', '/autor_libro', 'autor_libroController@getAll');
+$route->add('GET', '/autor_libro/{id}/{id}', 'autor_libroController@getOne');
+$route->add('POST', '/autor_libro', 'autor_libroController@add');
+$route->add('PUT', '/autor_libro/{id}/{id}', 'autor_libroController@update');
+$route->add('DELETE', '/autor_libro/{id}/{id}', 'autor_libroController@delete');
+};
+$addCrudRoutes('/usuario', 'usuarioController');
+$addCrudRoutes('/autor', 'autorController');
+$addCrudRoutes('/lector', 'lectorController');
+$addCrudRoutes('/libro', 'libroController');
+$addCrudRoutes('/lectura_libro', 'lectura_libroController');
+
+
 
 
 
