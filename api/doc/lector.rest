@@ -1,9 +1,6 @@
 ### consulta de lectores
 GET http://api.publicarlibros/lector
 
-### Obtener un lector
-GET http://api.publicarlibros/lector/1
-
 ### Adicionar lector
 POST http://api.publicarlibros/lector
 Content-Type: application/json

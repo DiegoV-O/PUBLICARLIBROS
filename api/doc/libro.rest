@@ -1,9 +1,6 @@
 ### Consulta de libros
 GET http://api.publicarlibros/libro
 
-### Obtener un libro
-GET http://api.publicarlibros/libro/1
-
 ### Adicionar libro
 POST http://api.publicarlibros/libro
 Content-Type: application/json

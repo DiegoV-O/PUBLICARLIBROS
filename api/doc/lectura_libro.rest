@@ -1,9 +1,6 @@
 ### consulta de lecturas
 GET http://api.publicarlibros/lectura_libro
 
-### Obtener una lectura
-GET http://api.publicarlibros/lectura_libro/1
-
 ### Adicionar lectura
 POST http://api.publicarlibros/lectura_libro
 Content-Type: application/json

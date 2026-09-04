@@ -1,9 +1,6 @@
 ### Consulta de autor-libro
 GET http://api.publicarlibros/autor_libro
 
-### Obtener una relacion por cod_libro y cod_autor
-GET http://api.publicarlibros/autor_libro/1/1
-
 ### Adicionar relacion autor-libro
 POST http://api.publicarlibros/autor_libro
 Content-Type: application/json

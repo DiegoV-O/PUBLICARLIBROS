@@ -1,9 +1,6 @@
 ### consulta de autores
 GET http://api.publicarlibros/autor
 
-### Obtener un autor
-GET http://api.publicarlibros/autor/1
-
 ### Adicionar autor
 POST http://api.publicarlibros/autor
 Content-Type: application/json
