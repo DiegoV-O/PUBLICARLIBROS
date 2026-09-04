@@ -1,2 +1,25 @@
-### consulta de usuario
-GET http://api.publicarlibros/users
+### consulta de usuarios
+GET http://api.publicarlibros/usuario
+
+### Adicionar usuario
+POST http://api.publicarlibros/usuario
+Content-Type: application/json
+
+{
+  "username": "usuario_prueba",
+  "password": "cambiar-esta-clave",
+  "rol": "Lector",
+  "activo": 1
+}
+
+### Modificar usuario
+PUT http://api.publicarlibros/usuario/1
+Content-Type: application/json
+
+{
+  "rol": "Personal",
+  "activo": 1
+}
+
+### Eliminar usuario
+DELETE http://api.publicarlibros/usuario/1
