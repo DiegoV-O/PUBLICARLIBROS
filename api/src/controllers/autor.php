@@ -1,5 +1,5 @@
 <?php
-require_once "../src/Models/autor.php";
+require_once __DIR__ . '/../models/autor.php';
 class autorController{
     public function getAll()
     {

@@ -1,2 +1,2 @@
 ### consulta de productos
-GET http://www.publicarlibros.com/autor
+GET http://api.publicarlibros/autor

@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/../Config/conexionDB.php";
+require_once __DIR__ . '/../config/conexionDB.php';
 class lector
 {
     public static function all()

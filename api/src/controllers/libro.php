@@ -1,5 +1,5 @@
 <?php
-require_once "../src/Models/libro.php";
+require_once __DIR__ . '/../models/libro.php';
 class libroController{
     public function getAll()
     {
