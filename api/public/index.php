@@ -29,18 +29,17 @@ $addCrudRoutes = function ($path, $controller) use ($route) {
     $route->add('POST', $path, $controller . '@add');
     $route->add('PUT', $path . '/{id}', $controller . '@update');
     $route->add('DELETE', $path . '/{id}', $controller . '@delete');
-//direccion de libros
-$route->add('GET', '/autor_libro', 'autor_libroController@getAll');
-$route->add('GET', '/autor_libro/{id}/{id}', 'autor_libroController@getOne');
-$route->add('POST', '/autor_libro', 'autor_libroController@add');
-$route->add('PUT', '/autor_libro/{id}/{id}', 'autor_libroController@update');
-$route->add('DELETE', '/autor_libro/{id}/{id}', 'autor_libroController@delete');
 };
 $addCrudRoutes('/usuario', 'usuarioController');
 $addCrudRoutes('/autor', 'autorController');
 $addCrudRoutes('/lector', 'lectorController');
 $addCrudRoutes('/libro', 'libroController');
 $addCrudRoutes('/lectura_libro', 'lectura_libroController');
+$route->add('GET', '/autor_libro', 'autor_libroController@getAll');
+$route->add('GET', '/autor_libro/{id}/{id}', 'autor_libroController@getOne');
+$route->add('POST', '/autor_libro', 'autor_libroController@add');
+$route->add('PUT', '/autor_libro/{id}/{id}', 'autor_libroController@update');
+$route->add('DELETE', '/autor_libro/{id}/{id}', 'autor_libroController@delete');
 
 
 
