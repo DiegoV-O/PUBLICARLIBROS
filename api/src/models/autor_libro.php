@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__ . '/../config/conexionDB.php';
-class autor_libro
+require_once __DIR__ . '/CrudModel.php';
+
+class autor_libro extends CrudModel
 {
-    public static function all()
-    {
-        $sql = "SELECT * FROM autor_libro";
-        return ConexionPDO::query($sql); //self::$users;
-    }
+    protected static $table = 'autor_libro';
+    protected static $columns = ['cod_libro', 'cod_autor', 'tipo_participacion'];
+    protected static $primaryKeys = ['cod_libro', 'cod_autor'];
 }

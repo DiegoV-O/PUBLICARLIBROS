@@ -1,26 +1,26 @@
 <?php
-require_once __DIR__ . "/../models/Users.php";
+require_once __DIR__ . "/../models/autores.php";
 
-class UserController
+class autorController
 {
     public function getAll()
     {
-        $user = Users::all();
-        echo json_encode($user); 
+        $autor = autores::all();
+        echo json_encode($autor); 
     }
 
     public function getById($id)
     {
-        $user = Users::find($id);
-        if ($user) {
-            echo json_encode($user);
+        $autor = autores::find($id);
+        if ($autor) {
+            echo json_encode($autor);
             return;
         }
 
         http_response_code(404);
         echo json_encode([
             "estado" => false,
-            "message" => "Usuario no encontrado",
+            "message" => "Autor no encontrado",
         ]);
     }
 
@@ -49,18 +49,19 @@ class UserController
             http_response_code(422);
             echo json_encode([
                 "status" => "error",
-                "message" => "Existen errores de validacion",
+                "message" => "Existen errores de validación",
                 "errores" => $errores,
             ]);
             return;
         }
 
         $data = $this->prepararDatos($data, false);
-        $user = Users::update($id, $data);
-        if ($user) {
+        // Llamada a la clase en minúsculas
+        $autor = autores::update($id, $data);
+        if ($autor) {
             echo json_encode([
                 "estado" => true,
-                "message" => "Usuario actualizado correctamente",
+                "message" => "Autor actualizado correctamente",
             ]);
             return;
         }
@@ -68,7 +69,7 @@ class UserController
         http_response_code(400);
         echo json_encode([
             "estado" => false,
-            "message" => "No se pudo actualizar el usuario",
+            "message" => "No se pudo actualizar el autor",
         ]);
     }
 
@@ -92,18 +93,19 @@ class UserController
             http_response_code(422);
             echo json_encode([
                 "status" => "error",
-                "message" => "Existen errores de validacion",
+                "message" => "Existen errores de validación",
                 "errores" => $errores,
             ]);
             return;
         }
 
         $data = $this->prepararDatos($data, true);
-        $user = Users::add($data);
-        if ($user) {
+        // Llamada a la clase en minúsculas
+        $autor = autores::add($data);
+        if ($autor) {
             echo json_encode([
                 "estado" => true,
-                "message" => "Usuario adicionado correctamente",
+                "message" => "Autor adicionado correctamente",
             ]);
             return;
         }
@@ -111,17 +113,18 @@ class UserController
         http_response_code(400);
         echo json_encode([
             "estado" => false,
-            "message" => "No se pudo crear el usuario",
+            "message" => "No se pudo crear el autor",
         ]);
     }
 
     public function delete($id)
     {
-        $user = Users::delete($id);
-        if ($user) {
+        // Llamada a la clase en minúsculas
+        $autor = autores::delete($id);
+        if ($autor) {
             echo json_encode([
                 "estado" => true,
-                "message" => "Usuario eliminado correctamente",
+                "message" => "Autor eliminado correctamente",
             ]);
             return;
         }
@@ -129,7 +132,7 @@ class UserController
         http_response_code(400);
         echo json_encode([
             "estado" => false,
-            "message" => "No se pudo eliminar el usuario",
+            "message" => "No se pudo eliminar el autor",
         ]);
     }
 
@@ -138,33 +141,18 @@ class UserController
         $errores = [];
 
         if (!is_array($data)) {
-            $errores[] = "Los datos enviados no son validos";
+            $errores[] = "Los datos enviados no son válidos";
             return $errores;
         }
 
-        if (!isset($data['username']) || trim((string) $data['username']) === "") {
-            $errores[] = "El campo username es obligatorio";
-        } elseif (strlen((string) $data['username']) > 50) {
-            $errores[] = "El campo username no debe superar los 50 caracteres";
-        }
-
-        if ($esNuevo && (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL))) {
-            $errores[] = "El campo email es obligatorio y debe ser válido";
-        }
-
-        $password = $data['password'] ?? null;
-        if ($esNuevo && (!is_scalar($password) || trim((string) $password) === "")) {
-            $errores[] = "El campo password es obligatorio";
-        } elseif ($password !== null && strlen((string) $password) > 255) {
-            $errores[] = "El campo password no debe superar los 255 caracteres";
+        if (!isset($data['nombre']) || trim((string) $data['nombre']) === "") {
+            $errores[] = "El campo nombre es obligatorio";
+        } elseif (strlen((string) $data['nombre']) > 100) {
+            $errores[] = "El campo nombre no debe superar los 100 caracteres";
         }
 
         if (isset($data['email']) && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $errores[] = "El campo email no es válido";
-        }
-
-        if (isset($data['rol']) && !in_array($data['rol'], ['Administrador', 'Personal', 'Lector'], true)) {
-            $errores[] = "El campo rol no es válido";
         }
 
         if (isset($data['activo']) && !in_array((int) $data['activo'], [0, 1], true)) {
@@ -176,25 +164,14 @@ class UserController
 
     private function prepararDatos($data, $esNuevo)
     {
-        if (isset($data['password'])) {
-            $password = trim((string) $data['password']);
-            if ($password !== '') {
-                $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-            } elseif (!$esNuevo) {
-                unset($data['password']);
-            }
+        if (isset($data['nombre'])) {
+            $data['nombre'] = trim((string) $data['nombre']);
         }
 
         if ($esNuevo) {
-            $data['rol'] = $data['rol'] ?? 'Lector';
             $data['activo'] = isset($data['activo']) ? (int) $data['activo'] : 1;
         }
 
         return $data;
     }
 }
-
-
-
-
-	

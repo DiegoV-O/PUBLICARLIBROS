@@ -30,7 +30,7 @@ class ConexionPDO
         }
     }
     // funcion para ejecutar transaccion update o add
-    public static function execute($sql, array $param = [],bool $id) 
+    public static function execute($sql, array $param = [], bool $id = false)
     {
         try{
             $db = self::connect();

@@ -1,10 +1,8 @@
 <?php
-require_once __DIR__ . '/../config/conexionDB.php';
-class lector
+require_once __DIR__ . '/CrudModel.php';
+
+class lector extends CrudModel
 {
-    public static function all()
-    {
-        $sql = "SELECT * FROM lector";
-        return ConexionPDO::query($sql); //self::$users;
-    }
+    protected static $table = 'lector';
+    protected static $columns = ['CI', 'nombre', 'apellidos', 'email', 'cod_usuario'];
 }

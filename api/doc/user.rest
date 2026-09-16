@@ -1,25 +1,35 @@
 ### consulta de usuarios
-GET http://api.publicarlibros/usuario
+GET http://api.publicarlibros/users
 
-### Adicionar usuario
-POST http://api.publicarlibros/usuario
-Content-Type: application/json
-
-{
-  "username": "usuario_prueba",
-  "password": "cambiar-esta-clave",
-  "rol": "Lector",
-  "activo": 1
-}
+### consulta de usuario por id
+GET http://api.publicarlibros/users/1
 
 ### Modificar usuario
-PUT http://api.publicarlibros/usuario/1
+PUT http://api.publicarlibros/users/1
+Content-Type: application/json
+
+  {
+    "username": "maria_personal",
+    "email": "maria.personal@example.com",
+    "password": 1,
+    "rol": "Personal",
+    "activo": 1,
+    "fecha_registro": "2026-08-26 "
+  }
+
+### Adicionar usuario
+POST http://api.publicarlibros/users
 Content-Type: application/json
 
 {
-  "rol": "Personal",
-  "activo": 1
+   "username": "maria_personal",
+   "email": "maria.personal@example.com",
+   "password": 1,
+   "rol": "Personal",
+   "activo": 1,
+   "fecha_registro": "2026-08-26 "
 }
 
+
 ### Eliminar usuario
-DELETE http://api.publicarlibros/usuario/1
+DELETE http://api.publicarlibros/users/1
