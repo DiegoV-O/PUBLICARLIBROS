@@ -22,6 +22,13 @@ class Users
         return count($result) > 0 ? $result[0] : null;
     }
 
+    public static function findForLogin($identifier)
+    {
+        $sql = "SELECT id, username, email, `password`, rol, activo FROM usuarios WHERE username=:identifier OR email=:identifier LIMIT 1";
+        $result = ConexionPDO::query($sql, [':identifier' => $identifier]);
+        return count($result) > 0 ? $result[0] : null;
+    }
+
     public static function update($id, $data)
     {
         if (isset($data['id'])) {
@@ -68,7 +75,7 @@ class Users
 
     public static function delete($id)
     {
-        $sql = "DELETE FROM usuarios WHERE id=:id";
+        $sql = "UPDATE usuarios SET activo=0 WHERE id=:id";
         $valores = [":id" => $id];
         return ConexionPDO::execute($sql, $valores);
     }

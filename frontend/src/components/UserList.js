@@ -21,7 +21,7 @@ export const getUserList = async () => {
                 <td>${escapeHtml(user.rol)} · ${Number(user.activo) ? 'Activo' : 'Inactivo'}</td>
                 <td>
                     <button type="button" data-edit="${user.id}">Editar</button>
-                    <button type="button" data-delete="${user.id}">Eliminar</button>
+                    <button type="button" data-toggle-active="${user.id}">${Number(user.activo) ? 'Desactivar' : 'Activar'}</button>
                 </td>
             </tr>
         `).join('');
@@ -51,7 +51,7 @@ export const initUserCrud = () => {
         }
     });
     table.addEventListener('click', async (event) => {
-        const id = event.target.dataset.edit || event.target.dataset.delete;
+        const id = event.target.dataset.edit || event.target.dataset.toggleActive;
         if (!id) return;
         if (event.target.dataset.edit) {
             const user = (await api.get('/users')).find((item) => String(item.id) === id);
@@ -64,10 +64,12 @@ export const initUserCrud = () => {
             document.getElementById('formTitle').textContent = 'Editar usuario';
             return;
         }
-        if (confirm('¿Eliminar este usuario?')) {
-            await api.delete(`/users/${id}`);
-            await getUserList();
-        }
+        const user = (await api.get('/users')).find((item) => String(item.id) === id);
+        if (!user) return;
+        const activating = Number(user.activo) === 0;
+        if (!activating && !confirm('¿Desactivar este usuario? Podrá reactivarse después.')) return;
+        await api.put(`/users/${id}`, { username: user.username, activo: activating ? 1 : 0 });
+        await getUserList();
     });
     document.getElementById('cancelUser').addEventListener('click', () => {
         form.reset();

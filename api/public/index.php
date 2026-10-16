@@ -30,6 +30,8 @@ $route=new Router();
 $route->add('GET','/','UserController@getAll');
 $route->add('GET','/users','UserController@getAll');        
 $route->add('GET','/users/{id}','UserController@getById');
+$route->add('POST','/users','UserController@add'); 
+$route->add('POST','/login','UserController@login');
 $route->add('PUT','/users/{id}','UserController@update');
 $route->add('POST','/users','UserController@add');
 $route->add('DELETE','/users/{id}','UserController@delete');

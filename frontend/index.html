@@ -113,6 +113,11 @@
       const [currentView, setCurrentView] = React.useState("home");
 
       function navigate(view) {
+        if (view === "login") {
+          window.location.href = "./src/views/login.html";
+          return;
+        }
+
         setCurrentView(view);
 
         if (view === "home") {

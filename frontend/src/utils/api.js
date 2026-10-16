@@ -1,4 +1,4 @@
-const api_url = "http://api.publicarlibros/api";
+const api_url = "http://api.publicarlibros";
 
 export const api = {
     request: async (method, endpoint, body) => {

@@ -21,6 +21,9 @@ function setActiveLink(view) {
 }
 
 const views = {
+    login: async () => {
+        window.location.href = './src/views/login.html';
+    },
     home: async () => {
         const res = await fetch('./src/views/home.html');
         app.innerHTML = await res.text();

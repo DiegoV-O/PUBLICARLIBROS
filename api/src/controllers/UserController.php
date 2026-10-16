@@ -3,6 +3,38 @@ require_once __DIR__ . "/../models/Users.php";
 
 class UserController
 {
+    public function login()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $identifier = is_array($data) ? trim((string) ($data['identifier'] ?? '')) : '';
+        $password = is_array($data) ? (string) ($data['password'] ?? '') : '';
+
+        if ($identifier === '' || $password === '') {
+            http_response_code(422);
+            echo json_encode([
+                "estado" => false,
+                "message" => "Ingresa tu usuario o correo y contraseña",
+            ]);
+            return;
+        }
+
+        $user = Users::findForLogin($identifier);
+        if (!$user || !(int) $user['activo'] || !password_verify($password, $user['password'])) {
+            http_response_code(401);
+            echo json_encode([
+                "estado" => false,
+                "message" => "Usuario o contraseña incorrectos",
+            ]);
+            return;
+        }
+
+        unset($user['password']);
+        echo json_encode([
+            "estado" => true,
+            "user" => $user,
+        ]);
+    }
+
     public function getAll()
     {
         $user = Users::all();
@@ -121,7 +153,7 @@ class UserController
         if ($user) {
             echo json_encode([
                 "estado" => true,
-                "message" => "Usuario eliminado correctamente",
+                "message" => "Usuario desactivado correctamente",
             ]);
             return;
         }
@@ -132,7 +164,6 @@ class UserController
             "message" => "No se pudo eliminar el usuario",
         ]);
     }
-
     private function validarDatos($data, $esNuevo = false)
     {
         $errores = [];
@@ -193,8 +224,3 @@ class UserController
         return $data;
     }
 }
-
-
-
-
-	

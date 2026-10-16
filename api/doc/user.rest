@@ -17,17 +17,13 @@ Content-Type: application/json
     "fecha_registro": "2026-08-26 "
   }
 
-### Adicionar usuario
-POST http://api.publicarlibros/users
+### Login usuario
+POST http://api.publicarlibros/login
 Content-Type: application/json
 
 {
-   "username": "maria_personal",
-   "email": "maria.personal@example.com",
-   "password": 1,
-   "rol": "Personal",
-   "activo": 1,
-   "fecha_registro": "2026-08-26 "
+   "email": "diego",
+   "password": $2y$10$jkl345...,
 }
 
 
