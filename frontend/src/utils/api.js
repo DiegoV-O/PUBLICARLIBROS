@@ -1,5 +1,5 @@
-const api_url = "http://api.publicarlibros";
-
+//const api_url = "http://api.publicarlibros";
+const api_url = "https://publicarlibros-1.onrender.com/";
 export const api = {
     request: async (method, endpoint, body) => {
         const options = { method, headers: { 'Content-Type': 'application/json' } };

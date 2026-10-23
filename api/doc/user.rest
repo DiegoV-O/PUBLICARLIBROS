@@ -22,7 +22,7 @@ POST http://api.publicarlibros/login
 Content-Type: application/json
 
 {
-   "email": "patichi",
+   "email": "patichi192@gmail.com",
    "password":1234567,
 }
 
